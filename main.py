@@ -31,8 +31,7 @@ dirt = State(
     )
 )
 
-stone = State(
-    "stone",
+stone = State("stone",
     Rule(
         lambda x, y : {
             (x, y+1): ["stone", "dirt"]
@@ -41,7 +40,7 @@ stone = State(
 )
 
 landscape = Wave(
-    (10, 40),
+    (40, 10),
     [air, grass, dirt, stone]
 )
 

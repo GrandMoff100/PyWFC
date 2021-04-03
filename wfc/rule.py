@@ -22,5 +22,4 @@ class Rule:
 
     @staticmethod
     def constrain(coords: tuple, *states):
-        return [coords, list(states)]
-
+        return coords, states
