@@ -1,50 +1,46 @@
 from .state import Potential
 
 
+def coordgen(w,h):
+    for x in range(w):
+        for y in range(h):
+            yield x,y
+
+
 class Wave:
-    def __init__(self, dims, states):
+    def __init__(self, dims: tuple, states: tuple):
         self.dims = dims
         self.states = states
-        self._grid = []
+        w, h = dims
+        self._grid = [[Potential(self.states) for x in range(w)] for y in range(h)]
 
-        for y in range(dims[0]):
-            self._grid.append([])
-            for x in range(dims[1]):
-                self._grid[y].append(Potential(self.states))
-
-
-    def pos(self, x, y) -> Potential:
+    def pos(self, x: int, y: int) -> Potential:
         try:
             return self._grid[y][x]
         except IndexError:
             return Potential(self.states)
 
-
-    def getstate(self, id):
-        for state in self.states:
-            if state.name == id:
-                return state
-
+    def getstate(self, id: str):
+        for state in filter(lambda x: x.name == id, self.states):
+            return state
 
     def gridmin(self):
-        minimum = None
-        for y, row in enumerate(self._grid):
-            for x, item in enumerate(row):
-                count = item.count(self, (x, y))
-                if count is False:
-                    continue
-
+        """minimum = None
+        for x,y in coordgen(*self.dims):
+            count = self._grid[y][x].count(self, (x, y))
+            if count:
                 if minimum is None or count < minimum[1]:
-                    minimum = [(x, y), count]
+                    minimum = [(x, y), count]   
         return minimum
-
-
+        """
+        count = lambda p: self._grid[p[1]][p[0]].count(self, p)
+        items = sorted(filter(count, coordgen(*self.dims)), key=count)
+        return (items[0], count(items[0])) if items else None
+        
     def collapse(self, presets: dict = {}):
         minimum = self.gridmin()
-
         while minimum:
             self.pos(*minimum[0]).collapse(self, minimum[0])
             minimum = self.gridmin()
-
-        return self._grid[::-1]
+        return self._grid
 

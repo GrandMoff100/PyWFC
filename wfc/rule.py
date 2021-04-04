@@ -11,16 +11,13 @@ class Rule:
             for state in states:
                 if state not in [x.name for x in wave.pos(*xy2).states]:
                     return False, constraints
-
         if constrain:
             for xy, states in constraints.items():
                 wave.pos(*xy).constrain(
                     [wave.getstate(s) for s in states]
                 )
-
         return True, constraints
 
     @staticmethod
     def constrain(coords: tuple, *states):
-        return [coords, list(states)]
-
+        return coords, states
