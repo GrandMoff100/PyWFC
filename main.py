@@ -44,7 +44,7 @@ landscape = Wave(
     [air, grass, dirt, stone]
 )
 
-landed = landscape.collapse()
+landed = landscape.collapse()[::-1]
 
 cmap = {
     "air": colorama.Fore.WHITE,

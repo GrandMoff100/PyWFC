@@ -11,8 +11,6 @@ class Wave:
     def __init__(self, dims: tuple, states: tuple):
         self.dims = dims
         self.states = states
-        self._grid = []
-
         w, h = dims
         self._grid = [[Potential(self.states) for x in range(w)] for y in range(h)]
 
@@ -41,10 +39,8 @@ class Wave:
         
     def collapse(self, presets: dict = {}):
         minimum = self.gridmin()
-    
         while minimum:
             self.pos(*minimum[0]).collapse(self, minimum[0])
             minimum = self.gridmin()
-
-        return self._grid[::-1]
+        return self._grid
 
