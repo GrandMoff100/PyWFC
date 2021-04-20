@@ -4,7 +4,7 @@ PyWFC is an implementation of the [Wave Function Collapse Algorithm](https://git
 ## Installation
 Use `pip install pywfc` to install via pip
 
-Or use `git clone https://github.com/FoxNerdSaysMoo/PyWFC && python PyWFC/setup.py install` (not tested yet)
+Or use `git clone https://github.com/FoxNerdSaysMoo/PyWFC && python PyWFC/setup.py install`
 
 ## Usage
 
