@@ -1,5 +1,11 @@
+# Python Binaries
+*.py[cod]
 **/__pycache__
 
-*.toml
-*.lock
+# Replit File
 .replit
+
+# Python Distributions
+build/
+dist/
+*.egg-info
