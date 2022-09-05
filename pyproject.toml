@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "pywfc"
+version = "0.0.0"
+description = "Python3 Wave Function Collapse Algorithm implementation"
+authors = ["TeamNightSky <teamnightsky.gh@gmail.com>"]
+license = "GPL-3.0-or-later"
+readme = "README.md"
+classifiers = ["Operating System :: OS Independent"]
+homepage = "https://github.com/FoxNerdSaysMoo/PyWFC"
+packages = [
+    { include = "wfc" }
+]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
